@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Helvetica Neue', 'Arial', sans-serif;
+            background-color: #fafafa;
+            color: #222;
+            line-height: 2;
+            font-size: 16px;
+        }
+        .wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 100px 40px;
+        }
+        .header {
+            margin-bottom: 120px;
+        }
+        .app-title {
+            font-size: 2.8em;
+            font-weight: 200;
+            letter-spacing: -1px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+        .page-title {
+            font-size: 1.2em;
+            font-weight: 300;
+            color: #666;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: #000;
+            margin: 60px 0;
+        }
+        .contact-info {
+            margin-bottom: 100px;
+            padding: 40px 0;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .contact-label {
+            font-size: 0.85em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        .contact-value {
+            font-size: 1.1em;
+            color: #000;
+        }
+        .content-section {
+            margin-bottom: 80px;
+        }
+        .section-title {
+            font-size: 1.6em;
+            font-weight: 300;
+            color: #000;
+            margin-bottom: 30px;
+            letter-spacing: -0.5px;
+        }
+        .section-body {
+            color: #444;
+            text-align: justify;
+            margin-bottom: 25px;
+        }
+        .list-group {
+            margin: 30px 0;
+        }
+        .list-entry {
+            padding: 25px 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+        }
+        .list-entry:last-child {
+            border-bottom: none;
+        }
+        .error {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+            display: none;
+        }
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 60px 25px;
+            }
+            .app-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="main-wrapper">
+        <div class="header">
+            <div class="app-title" id="minimal-app-name">{替换名字}</div>
+            <div class="page-title">Privacy Policy</div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-label">Contact</div>
+            <div class="contact-value" id="minimal-email">{替换邮箱}</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
+            <div class="section-title">Our Privacy Philosophy</div>
+            <div class="section-body">
+                We deeply respect the privacy of every individual who uses our application. This document outlines how we handle your personal information with care and responsibility. We adhere to strict principles when collecting, using, and disclosing your data, ensuring it is managed with the highest level of professionalism. Your information remains confidential and will not be shared with outside parties unless you explicitly authorize such disclosure, or as specifically described herein. This policy evolves with our practices, and we may update it accordingly. By using our service, you acknowledge your agreement with these terms, which form a fundamental part of our service contract.
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
+            <div class="section-title">What Information We Gather</div>
+            <div class="section-body">
+                To deliver our services effectively, we collect certain information from our users:
+            </div>
+            <div class="list-group">
+                <div class="list-entry">
+                    Personal details you share with us when establishing your account on our platform
+                </div>
+                <div class="list-entry">
+                    Technical information that our systems automatically capture during your visits, such as your network address, browser specifications, preferred language, visit timestamps, and device attributes
+                </div>
+                <div class="list-entry">
+                    User information we obtain through proper channels from our trusted business collaborators
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="content-section">
+            <div class="section-title">What This Policy Does Not Cover</div>
+            <div class="section-body">
+                Certain information falls outside the boundaries of this privacy policy. Specifically:
+            </div>
+            <div class="list-group">
+                <div class="list-entry">
+                    Search terms and queries you submit through our platform's search tools
+                </div>
+                <div class="list-entry">
+                    Content you choose to share publicly on our platform, such as activity participation, transaction records, and user reviews
+                </div>
+                <div class="list-entry">
+                    Information associated with policy violations or unlawful conduct, and our corresponding enforcement actions
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="error" id="minimal-error">
+        Unable to load application information.<br>Please check the URL parameters.
+    </div>
+
+    <script>
+        function parseUrlAndUpdateContent() {
+            try {
+                const urlParams = new URLSearchParams(window.location.search);
+                const encodedAppName = urlParams.get('id');
+                const encodedEmail = urlParams.get('uid');
+                
+                if (!encodedAppName || !encodedEmail) {
+                    throw new Error('Missing parameters');
+                }
+                
+                const appName = decodeURIComponent(encodedAppName);
+                const email = decodeURIComponent(encodedEmail);
+                
+                if (!appName || !email) {
+                    throw new Error('Invalid data');
+                }
+                
+                document.getElementById('minimal-app-name').textContent = appName;
+                document.getElementById('minimal-email').textContent = email;
+                document.title = appName + ' - Privacy Policy';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('minimal-error').style.display = 'block';
+                document.getElementById('main-wrapper').style.display = 'none';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', parseUrlAndUpdateContent);
+    </script>
+</body>
+</html>
